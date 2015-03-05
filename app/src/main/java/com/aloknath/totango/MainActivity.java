@@ -46,6 +46,8 @@ public class MainActivity extends ActionBarActivity {
         @Override
         protected Void doInBackground(Void... voids) {
             String content = HttpManager.getData("https://appem.totango.com/api/v1/search/accounts/health_dist");
+            String content1 = HttpManager.getData1("https://appem.totango.com/api/v1/search/accounts");
+
             return null;
         }
     }
