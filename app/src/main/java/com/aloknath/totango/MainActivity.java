@@ -11,27 +11,9 @@ import android.widget.Toast;
 import com.aloknath.totango.HttpManager.HttpManager;
 import com.aloknath.totango.Objects.ParsedJsonObjects;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpHead;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.protocol.HTTP;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-import java.util.ArrayList;
 import java.util.List;
 
-import static com.aloknath.totango.JsonParserGson.jsonParserGson;
+import static com.aloknath.totango.JsonParser.JsonParserGson.jsonParserGson;
 
 
 public class MainActivity extends ActionBarActivity {
