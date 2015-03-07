@@ -1,12 +1,15 @@
 package com.aloknath.totango;
 
+import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.aloknath.totango.HttpManager.HttpManager;
+import com.aloknath.totango.Objects.ParsedJsonObjects;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -28,176 +31,74 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.aloknath.totango.JsonParserGson.jsonParserGson;
+
 
 public class MainActivity extends ActionBarActivity {
+
+    private List<ParsedJsonObjects> items;
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        progressDialog = new ProgressDialog(MainActivity.this);
 
         getAsyncData data = new getAsyncData();
         data.execute();
 
     }
 
-    private class getAsyncData extends AsyncTask<Void , Void, Void>{
+    private class getAsyncData extends AsyncTask<Void , Void, List<ParsedJsonObjects>>{
 
         @Override
-        protected Void doInBackground(Void... voids) {
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progressDialog.setMessage("Fetching Data and Creating Objects");
+            progressDialog.setIndeterminate(true);
+            progressDialog.show();
+
+        }
+
+        @Override
+        protected List<ParsedJsonObjects> doInBackground(Void... voids) {
             String content = HttpManager.getData("https://appem.totango.com/api/v1/search/accounts/health_dist");
             String content1 = HttpManager.getData1("https://appem.totango.com/api/v1/search/accounts");
+            List<ParsedJsonObjects> itemsReturned = jsonParserGson(content1);
 
-            return null;
+            return itemsReturned;
+        }
+
+        @Override
+        protected void onPostExecute(List<ParsedJsonObjects> parsedJsonObjects) {
+            super.onPostExecute(parsedJsonObjects);
+            progressDialog.hide();
+            items = parsedJsonObjects;
+            displayData();
+
         }
     }
 
+    private void displayData() {
 
-    //https://appem.totango.com/api/v1/search/accounts?app-token=1a1c626e8cdca0a80ae61b73ee0a1909941ab3d7mobile+testme@totango.com
+        Toast.makeText(this, "The Display Name: " + items.get(5).getDisplayName(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "The Display Name: " + items.get(500).getDisplayName(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "The Display Name: " + items.get(999).getDisplayName(), Toast.LENGTH_SHORT).show();
 
-   /*
-   {
-"request":{
-"email":"a@b.com",
-"old_passw":306,
-"use_id":123,
-"new_passw":456
-}
-}
-
-JSONObject header = new JSONObject();
-header.put("email", "a@b.com");
-header.put("old_passw", "306");
-header.put("use_id", "123");
-header.put("new_passw", "456");
-
-
-2 Create new jSON object (outer with key 'request' ) and put inner jSON object inside it as a value to the key "request".
-
-
-JSONObject student1 = new JSONObject();
-try {
-    student1.put("id", "3");
-    student1.put("name", "NAME OF STUDENT");
-    student1.put("year", "3rd");
-    student1.put("curriculum", "Arts");
-    student1.put("birthday", "5/5/1993");
-
-} catch (JSONException e) {
-    // TODO Auto-generated catch block
-    e.printStackTrace();
-}
-
-JSONObject student2 = new JSONObject();
-try {
-    student2.put("id", "2");
-    student2.put("name", "NAME OF STUDENT2");
-    student2.put("year", "4rd");
-    student2.put("curriculum", "scicence");
-    student2.put("birthday", "5/5/1993");
-
-} catch (JSONException e) {
-
-    e.printStackTrace();
-}
-
-
-{        "student":
-          [
-
-            {
-                "id": 1,
-                "name": "John Doe",
-                "year": "1st",
-                "curriculum": "Arts",
-                "birthday": 3/3/1995
-
-            },
-            {
-                "id": 2,
-                "name": "Michael West",
-                "year": "2nd",
-                "curriculum": "Economic",
-                "birthday": 4/4/1994
-            }
-        ]
     }
 
-JSONArray jsonArray = new JSONArray();
-
-jsonArray.put(student1);
-jsonArray.put(student2);
-
-JSONObject studentsObj = new JSONObject();
-    studentsObj.put("Students", jsonArray);
-
-
-
-String jsonStr = studentsObj.toString();
-
-    System.out.println("jsonString: "+jsonStr);
-
-
-
-JSONObject jsonobj = new JSONObject();
-jsonobj.put("request", header);
-
-****************************************************************************
-*
-
-   query =
-   {
-         "terms":
-                  [
-                    {
-                       "type":"totango_user_scope",
-                       "is_one_of":
-                                  [
-                                      “mobile+testme@totango.com"
-                                  ]
-                    }
-                  ]
-          ,
-
-          "group_fields" :
-                         [
-                            {"type":"health"}
-                         ]
-
-   }
-
-
-
-      Creating a JsonObject for the above query.
-
-*************************************************************************
-*
-*
-
-
-******************************************************************************************************
-
-
-
-
-
-
-    */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
