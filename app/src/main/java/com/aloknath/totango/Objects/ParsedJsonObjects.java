@@ -42,3 +42,9 @@ public class ParsedJsonObjects {
         this.engagedUsers = engagedUsers;
     }
 }
+
+
+/* total_hits
+   sum
+
+ */

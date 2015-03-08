@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent" android:layout_height="fill_parent"
+    android:orientation="vertical"
+   >
+
+    <TextView
+        android:layout_width="10dp"
+        android:layout_height="100dp"
+        android:id="@+id/textView"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="10dp"
+        android:background="#ff2bff0d"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="AboveNet"
+        android:textSize="15sp"
+        android:textColor="#000000"
+        android:id="@+id/title"
+        android:layout_alignTop="@+id/textView"
+        android:layout_toRightOf="@+id/textView"
+        android:layout_toEndOf="@+id/textView"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="15dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2 Months"
+        android:id="@+id/time_duration"
+        android:layout_alignLeft="@+id/title"
+        android:layout_alignStart="@+id/title"
+        android:layout_below="@+id/title"
+        android:layout_marginTop="5dp"
+        android:textSize="10sp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ago improved to good"
+        android:id="@+id/time_text"
+        android:layout_toEndOf="@+id/time_duration"
+        android:layout_toRightOf="@+id/time_duration"
+        android:layout_below="@+id/title"
+        android:layout_marginTop="5dp"
+        android:textSize="10sp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="$22.4K"
+        android:id="@+id/amount"
+        android:layout_below="@+id/time_duration"
+        android:layout_marginTop="5dp"
+        android:textSize="10sp"
+        android:layout_alignLeft="@+id/time_duration"
+        android:layout_alignStart="@+id/time_duration"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Engagement"
+        android:id="@+id/engagement"
+        android:layout_toEndOf="@+id/amount"
+        android:layout_toRightOf="@+id/amount"
+        android:layout_below="@+id/time_duration"
+        android:layout_marginTop="5dp"
+        android:textSize="10sp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="25/100"
+        android:id="@+id/engagement_number"
+        android:layout_toEndOf="@+id/engagement"
+        android:layout_toRightOf="@+id/engagement"
+        android:layout_below="@+id/time_duration"
+        android:layout_marginTop="5dp"
+        android:textSize="10sp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Active Users"
+        android:id="@+id/active_users"
+        android:layout_toEndOf="@+id/engagement_number"
+        android:layout_toRightOf="@+id/engagement_number"
+        android:layout_below="@+id/time_duration"
+        android:layout_marginTop="5dp"
+        android:textSize="10sp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="12"
+        android:id="@+id/active_users_number"
+        android:layout_toEndOf="@+id/active_users"
+        android:layout_toRightOf="@+id/active_users"
+        android:layout_below="@+id/time_duration"
+        android:layout_marginTop="5dp"
+        android:textSize="10sp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"/>
+
+</RelativeLayout>

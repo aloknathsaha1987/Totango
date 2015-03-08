@@ -1,13 +1,18 @@
 package com.aloknath.totango;
 
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
 import android.widget.Toast;
 
+import com.aloknath.totango.Adapters.CustomerAdapter;
 import com.aloknath.totango.HttpManager.HttpManager;
 import com.aloknath.totango.Objects.ParsedJsonObjects;
 
@@ -20,6 +25,8 @@ public class MainActivity extends ActionBarActivity {
 
     private List<ParsedJsonObjects> items;
     private ProgressDialog progressDialog;
+    private ListView listView;
+    private CustomerAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,9 +34,25 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
         progressDialog = new ProgressDialog(MainActivity.this);
 
-        getAsyncData data = new getAsyncData();
-        data.execute();
+        if (isOnline()) {
+            getAsyncData data = new getAsyncData();
+            data.execute();
+            listView = (ListView) findViewById(R.id.listView);
 
+        }else {
+            Toast.makeText(this, "Network isn't available", Toast.LENGTH_LONG).show();
+        }
+
+    }
+
+    protected boolean isOnline() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+        if (netInfo != null && netInfo.isConnectedOrConnecting()) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     private class getAsyncData extends AsyncTask<Void , Void, List<ParsedJsonObjects>>{
@@ -64,9 +87,10 @@ public class MainActivity extends ActionBarActivity {
 
     private void displayData() {
 
-        Toast.makeText(this, "The Display Name: " + items.get(5).getDisplayName(), Toast.LENGTH_SHORT).show();
-        Toast.makeText(this, "The Display Name: " + items.get(500).getDisplayName(), Toast.LENGTH_SHORT).show();
-        Toast.makeText(this, "The Display Name: " + items.get(999).getDisplayName(), Toast.LENGTH_SHORT).show();
+        // Set the adapter with the list items.
+
+        adapter = new CustomerAdapter(this,R.layout.custom_adapter_layout, items);
+        listView.setAdapter(adapter);
 
     }
 
