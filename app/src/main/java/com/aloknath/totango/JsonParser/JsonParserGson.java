@@ -1,6 +1,6 @@
 package com.aloknath.totango.JsonParser;
 
-import com.aloknath.totango.Objects.ParsedJsonObjects;
+import com.aloknath.totango.Objects.ParsedJsonListObject;
 import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,9 +11,9 @@ import java.util.Map;
  */
 public class JsonParserGson {
 
-    private static List<ParsedJsonObjects> listObjects = new ArrayList<>();
+    private static List<ParsedJsonListObject> listObjects = new ArrayList<>();
 
-    public static List<ParsedJsonObjects> jsonParserGson(String jsonString){
+    public static List<ParsedJsonListObject> jsonParserGson(String jsonString){
 
         Map jsonJavaRootObject = new Gson().fromJson(jsonString, Map.class);
 
@@ -35,7 +35,7 @@ public class JsonParserGson {
 
         for(int i = 0; i < size; i++){
 
-            ParsedJsonObjects newObject = new ParsedJsonObjects();
+            ParsedJsonListObject newObject = new ParsedJsonListObject();
             newObject.setDisplayName((String) (
                     (Map)
                             (

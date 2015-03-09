@@ -1,0 +1,132 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:baselineAligned="false"
+    android:orientation="vertical" >
+
+    <include layout="@layout/toolbar"
+        android:id="@+id/include"/>
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="300dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="43dp"
+        android:id="@+id/layout1"
+        android:layout_below="@+id/include">
+
+        <fragment
+            class="com.shinobicontrols.charts.ChartFragment"
+            android:id="@+id/chart"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="0dp"
+        android:id="@+id/layout2"
+        android:layout_below="@+id/layout1"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CONTRACT VALUE"
+            android:id="@+id/contract_text"
+            android:layout_marginStart="25dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="5dp"
+            android:textColor="#000000"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="$902.5M"
+            android:id="@+id/edit_contract_text"
+            android:layout_below="@+id/contract_text"
+            android:layout_marginStart="35dp"
+            android:layout_marginLeft="35dp"
+            android:layout_marginTop="5dp"
+            android:textColor="#000000"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TOTAL ACCOUNTS"
+            android:id="@+id/accounts_text"
+            android:layout_toRightOf="@+id/contract_text"
+            android:layout_toEndOf="@+id/contract_text"
+            android:layout_marginStart="65dp"
+            android:layout_marginLeft="65dp"
+            android:layout_marginTop="5dp"
+            android:textColor="#000000"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="17100"
+            android:id="@+id/edit_accounts_text"
+            android:layout_below="@+id/accounts_text"
+            android:layout_toEndOf="@+id/edit_contract_text"
+            android:layout_toRightOf="@+id/edit_contract_text"
+            android:layout_marginStart="150dp"
+            android:layout_marginLeft="150dp"
+            android:layout_marginTop="5dp"
+            android:textColor="#000000"/>
+
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="150dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:id="@+id/layout3"
+        android:layout_below="@+id/layout2">
+
+
+        <fragment
+            class="com.shinobicontrols.charts.ChartFragment"
+            android:id="@+id/chart1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            />
+
+        <fragment
+            class="com.shinobicontrols.charts.ChartFragment"
+            android:id="@+id/chart2"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            />
+
+        <fragment
+            class="com.shinobicontrols.charts.ChartFragment"
+            android:id="@+id/chart3"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            />
+    </LinearLayout>
+
+    <include layout="@layout/footer_layout"
+        android:id="@+id/footer"
+        android:layout_width="fill_parent"
+        android:layout_height="75dp"
+        android:layout_alignParentBottom="true"/>
+
+
+</RelativeLayout>

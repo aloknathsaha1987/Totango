@@ -2,6 +2,7 @@ package com.aloknath.totango;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -14,7 +15,7 @@ import android.widget.Toast;
 
 import com.aloknath.totango.Adapters.CustomerAdapter;
 import com.aloknath.totango.HttpManager.HttpManager;
-import com.aloknath.totango.Objects.ParsedJsonObjects;
+import com.aloknath.totango.Objects.ParsedJsonListObject;
 
 import java.util.List;
 
@@ -23,7 +24,7 @@ import static com.aloknath.totango.JsonParser.JsonParserGson.jsonParserGson;
 
 public class MainActivity extends ActionBarActivity {
 
-    private List<ParsedJsonObjects> items;
+    private List<ParsedJsonListObject> items;
     private ProgressDialog progressDialog;
     private ListView listView;
     private CustomerAdapter adapter;
@@ -41,6 +42,8 @@ public class MainActivity extends ActionBarActivity {
 
         }else {
             Toast.makeText(this, "Network isn't available", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(this, UserProfileActivity.class);
+            startActivity(intent);
         }
 
     }
@@ -55,7 +58,7 @@ public class MainActivity extends ActionBarActivity {
         }
     }
 
-    private class getAsyncData extends AsyncTask<Void , Void, List<ParsedJsonObjects>>{
+    private class getAsyncData extends AsyncTask<Void , Void, List<ParsedJsonListObject>>{
 
         @Override
         protected void onPreExecute() {
@@ -67,16 +70,16 @@ public class MainActivity extends ActionBarActivity {
         }
 
         @Override
-        protected List<ParsedJsonObjects> doInBackground(Void... voids) {
+        protected List<ParsedJsonListObject> doInBackground(Void... voids) {
             String content = HttpManager.getData("https://appem.totango.com/api/v1/search/accounts/health_dist");
             String content1 = HttpManager.getData1("https://appem.totango.com/api/v1/search/accounts");
-            List<ParsedJsonObjects> itemsReturned = jsonParserGson(content1);
+            List<ParsedJsonListObject> itemsReturned = jsonParserGson(content1);
 
             return itemsReturned;
         }
 
         @Override
-        protected void onPostExecute(List<ParsedJsonObjects> parsedJsonObjects) {
+        protected void onPostExecute(List<ParsedJsonListObject> parsedJsonObjects) {
             super.onPostExecute(parsedJsonObjects);
             progressDialog.hide();
             items = parsedJsonObjects;

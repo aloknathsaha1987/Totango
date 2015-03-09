@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import com.aloknath.totango.Objects.ParsedJsonObjects;
+import com.aloknath.totango.Objects.ParsedJsonListObject;
 import com.aloknath.totango.R;
 
 import java.text.SimpleDateFormat;
@@ -17,12 +17,12 @@ import java.util.List;
 /**
  * Created by ALOKNATH on 3/8/2015.
  */
-public class CustomerAdapter extends ArrayAdapter<ParsedJsonObjects> {
+public class CustomerAdapter extends ArrayAdapter<ParsedJsonListObject> {
     private Context context;
-    private List<ParsedJsonObjects> items;
+    private List<ParsedJsonListObject> items;
     TextView textView;
 
-    public CustomerAdapter(Context context,int resource,  List<ParsedJsonObjects> items) {
+    public CustomerAdapter(Context context, int resource,  List<ParsedJsonListObject> items) {
         super(context, resource , items);
         this.context = context;
         this.items = items;
@@ -34,7 +34,7 @@ public class CustomerAdapter extends ArrayAdapter<ParsedJsonObjects> {
         LayoutInflater inflater = LayoutInflater.from(getContext());
         convertView = inflater.inflate(R.layout.custom_adapter_layout, parent, false);
 
-        ParsedJsonObjects item = getItem(position);
+        ParsedJsonListObject item = getItem(position);
 
         textView = (TextView)convertView.findViewById(R.id.title);
         textView.setText(item.getDisplayName());
