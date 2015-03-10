@@ -85,9 +85,12 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="gson-2.3.1" level="project" />
     <orderEntry type="library" exported="" name="appcompat-v7-21.0.3" level="project" />
+    <orderEntry type="library" exported="" name="jackson-annotations-2.2.4" level="project" />
     <orderEntry type="library" exported="" name="support-annotations-21.0.3" level="project" />
     <orderEntry type="library" exported="" name="support-v4-21.0.3" level="project" />
     <orderEntry type="library" exported="" name="shinobicharts-android-trial-1.7.1-1" level="project" />
+    <orderEntry type="library" exported="" name="jackson-databind-2.2.4" level="project" />
+    <orderEntry type="library" exported="" name="jackson-core-2.2.4" level="project" />
     <orderEntry type="module" module-name="shinobichartsandroidlibrary" exported="" />
   </component>
 </module>

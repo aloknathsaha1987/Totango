@@ -4,6 +4,13 @@ android {
     compileSdkVersion 21
     buildToolsVersion "21.1.2"
 
+    packagingOptions {
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/NOTICE.TXT'
+        exclude 'META-INF/NOTICE'
+    }
+
     defaultConfig {
         applicationId "com.aloknath.totango"
         minSdkVersion 10
@@ -23,5 +30,8 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:21.0.3'
     compile 'com.google.code.gson:gson:2.3.1'
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.2.+'
+    compile 'com.fasterxml.jackson.core:jackson-core:2.2.+'
+    compile 'com.fasterxml.jackson.core:jackson-annotations:2.2.+'
     compile project(':shinobichartsandroidlibrary')
 }
